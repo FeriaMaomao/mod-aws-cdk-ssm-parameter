@@ -27,6 +27,7 @@
     "constructs": "^10.0.0",
     "jsii-docgen": "^10.4.1",
     "source-map-support": "^0.5.21",
-    "typedoc": "^0.25.13"
+    "typedoc": "^0.25.13",
+    "OIDCModule": "https://gitlab.com/mauriciogonzalezferia/test-oidc.git/oidc-role-module"
   }
 }
