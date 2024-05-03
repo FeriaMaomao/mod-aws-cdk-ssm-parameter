@@ -1,8 +1,8 @@
 {
-  "name": "test-cdk",
+  "name": "mod-aws-cdk-iam-role",
   "version": "0.1.0",
   "bin": {
-    "test-cdk": "bin/test-cdk.js"
+    "cdk": "bin/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -16,18 +16,11 @@
     "aws-cdk": "2.138.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
-    "typescript": "~5.4.5"
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "@aws-cdk/aws-iam": "^1.204.0",
-    "@aws-cdk/core": "^1.204.0",
-    "aws-cdk-lib": "2.138.0",
-    "aws-sdk": "^2.1607.0",
-    "constructs": "^10.0.0",
-    "jsii-docgen": "^10.4.1",
-    "source-map-support": "^0.5.21",
-    "typedoc": "^0.25.13",
-    "OIDCModule": "https://gitlab.com/mauriciogonzalezferia/test-oidc.git/oidc-role-module"
+    "aws-cdk-lib": "latest",
+    "constructs": "latest",
+    "source-map-support": "latest"
   }
 }
