@@ -45,7 +45,7 @@
 const cdk = require('aws-cdk-lib');
 const iam = require('aws-cdk-lib/aws-iam');
 
-class aimRoleModule extends cdk.Construct {
+class iamRoleModule extends cdk.Construct {
   constructor(scope, id, props) {
     super(scope, id);
 
@@ -73,4 +73,4 @@ class aimRoleModule extends cdk.Construct {
   }
 }
 
-module.exports = { aimRoleModule };
+module.exports = { iamRoleModule };
