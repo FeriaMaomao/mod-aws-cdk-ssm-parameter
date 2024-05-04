@@ -108,7 +108,7 @@ module.exports = { CdkRoleStack };   // Your Custom Stack
 
 ```
 
-### Custom Invocation Example with 2 o more Roles
+### Custom Invocation Example with 2 or more Roles
 
 ```CDK
 Add in package.json
