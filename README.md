@@ -14,8 +14,8 @@
   - [Inputs](#Inputs)
   - [Outputs](#Outputs)
   - [Example usage](#Example-usage)
-  - [Basic Invocation Example](#Basic-Invocation-Example)
-  - [Custom Invocation Example](#Custom-Invocation-Example)
+  - [Basic Invocation Example](#Basic%20Invocation%20Example%20with%20one%20Role)
+  - [Custom Invocation Example](#Custom%20Invocation%20Example%20with%202%20or%20more%20Roles)
 
 ## Diagram
 
