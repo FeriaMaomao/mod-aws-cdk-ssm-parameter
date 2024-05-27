@@ -91,7 +91,7 @@ class CdkSSMStack extends cdk.Stack {
     new ssmParameterModule(this, 'ssmParameterModule', {
       parameters: {
         example: {
-          name: 'Custom Role Name',
+          name: 'Custom  Name',
           value: 'Custom Value',
         }
       }
@@ -130,15 +130,15 @@ class CdkSSMStack extends cdk.Stack {
     new ssmParameterModule(this, 'ssmParameterModule', {
       parameters: {
         example: {
-          name: 'Custom Role Name',
+          name: 'Custom  Name',
           value: 'Custom Value',
         },
         example2: {
-          name: 'Custom Role Name',
+          name: 'Custom  Name',
           value: 'Custom Value',
         },
         example3: {
-          name: 'Custom Role Name',
+          name: 'Custom  Name',
           value: 'Custom Value',
         }
       }
