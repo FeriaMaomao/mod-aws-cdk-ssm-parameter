@@ -1,5 +1,5 @@
 {
-  "name": "mod-aws-cdk-iam-role",
+  "name": "mod-aws-cdk-ssm-parameter",
   "version": "0.1.0",
   "bin": {
     "cdk": "bin/index.js"

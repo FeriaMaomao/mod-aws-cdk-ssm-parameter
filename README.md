@@ -1,12 +1,13 @@
-# mod-aws-cdk-iam-role
+# mod-aws-cdk-ssm-parameter
 
 [![CDK](https://img.shields.io/badge/CDK-2.138.0-yellow)](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
 
-> Module that allows the creation of OIDC IAM Role and its dependencies.
+> Module that allows the creation of Parameters in SSM and its dependencies.
+
 >
 > ## Table of Contents
 
-- [mod-aws-cdk-iam-role](#mod-aws-cdk-iam-role)
+- [mod-aws-cdk-ssm-parameter](#mod-aws-cdk-ssm-parameter)
   - [Table of Contents](#Table-of-Contents)
   - [Diagram](#Diagram)
   - [Prerequisites](#Prerequisites)
@@ -14,12 +15,12 @@
   - [Inputs](#Inputs)
   - [Outputs](#Outputs)
   - [Example usage](#Example-usage)
-  - [Basic Invocation Example](#Basic%20Invocation%20Example%20with%20one%20Role)
-  - [Custom Invocation Example](#Custom%20Invocation%20Example%20with%202%20or%20more%20Roles)
+  - [Basic Invocation Example](#Basic%20Invocation%20Example%20with%20one%20Parameter)
+  - [Custom Invocation Example](#Custom%20Invocation%20Example%20with%202%20or%20more%20Parameters)
 
 ## Diagram
 
-![](./images/IAM%20Roles.png)
+![](./images/ssm%20parameters.png)
 
 ## Prerequisites
 
@@ -47,11 +48,9 @@ You will need the following things properly installed on your computer.
 
 | Name                  | Description                                                                                                                        | Type     | Default | Required |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | :------: |
-| roleName                 | Custom Role Name.                                                                                                            | `string`    | n/a     |   yes    |
-| description                  | Custom Description to Role.                                                                                                       | `string`    | n/a     |   yes    |
-| policyName    | Custom Policy Name.                                                                    | `string` | n/a   |    yes    |
-| actions           | Allowable Action to Role                                                                                                           | `string[]` | n/a    |    yes    |
-| resources | Resource Allowed Access.                                                       | `string[]` | n/a |    yes    |
+| name                 | Custom Path Name.                                                                                                            | `string`    | n/a     |   yes    |
+| value    | Custom Value.                                                                    | `string` | n/a   |    yes    |
+
 
 
 ## Outputs
@@ -62,10 +61,10 @@ You will need the following things properly installed on your computer.
 
 ## Example usage
 
-- This module creates an OIDC Provider, a Role that takes the OIDC as a Trust Entity Configuration, a policy to allow actions on resources and finally attaches the policy to the role.
+- This module allows the creation of one or more parameters as necessary.
 
 
-### Basic Invocation Example with one Role
+### Basic Invocation Example with one Parameter
 
 ```CDK
 Add in package.json
@@ -73,42 +72,38 @@ Add in package.json
 "dependencies": {
     "aws-cdk-lib": "latest",
     "constructs": "latest",
-    "iamRoleModule": "gitlab:mauriciogonzalezferia/mod-aws-cdk-iam-role"
+    "ssmParameterModule": "gitlab:mauriciogonzalezferia/mod-aws-cdk-ssm-parameter"
   }
 
 #################################################################
 
 const cdk = require('aws-cdk-lib');
-const iam = require('aws-cdk-lib/aws-iam');
-const { iamRoleModule } = require('iamRoleModule/iam-role-module');
+const ssm = require('aws-cdk-lib/aws-ssm');
+const { ssmParameterModule } = require('../../mod-aws-cdk-ssm-parameter/ssm-parameter-module');
 
 // Your Custom Stack
-class CdkRoleStack extends cdk.Stack {
+class CdkSSMStack extends cdk.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
     // Inside your custom stack
     // Create Role
-    new iamRoleModule(this, 'iamRoleModule', {
-      roles: {
+    new ssmParameterModule(this, 'ssmParameterModule', {
+      parameters: {
         example: {
           name: 'Custom Role Name',
-          description: 'Description for the role',
-          policyName: 'Policy Custom name',
-          actions: ['s3:*'],    // Allow Actions Services
-          resources: ['*'],    // Allow on Resources or ARN
-          ServicePrincipal: 'ec2.amazonaws.com'   // Assume Policy on Service - Trusted Config
+          value: 'Custom Value',
         }
       }
     });
   }
 }
 
-module.exports = { CdkRoleStack };   // Your Custom Stack
+module.exports = { CdkSSMStack };   // Your Custom Stack
 
 ```
 
-### Custom Invocation Example with 2 or more Roles
+### Custom Invocation Example with 2 or more Parameters
 
 ```CDK
 Add in package.json
@@ -116,54 +111,42 @@ Add in package.json
 "dependencies": {
     "aws-cdk-lib": "latest",
     "constructs": "latest",
-    "iamRoleModule": "gitlab:mauriciogonzalezferia/mod-aws-cdk-iam-role"
+    "ssmParameterModule": "gitlab:mauriciogonzalezferia/mod-aws-cdk-ssm-parameter"
   }
 
 #################################################################
 
 const cdk = require('aws-cdk-lib');
-const iam = require('aws-cdk-lib/aws-iam');
-const { iamRoleModule } = require('iamRoleModule/iam-role-module');
+const ssm = require('aws-cdk-lib/aws-ssm');
+const { ssmParameterModule } = require('../../mod-aws-cdk-ssm-parameter/ssm-parameter-module');
 
 // Your Custom Stack
-class CdkRoleStack extends cdk.Stack {
+class CdkSSMStack extends cdk.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
     // Inside your custom stack
     // Create Role
-    new iamRoleModule(this, 'iamRoleModule', {
-      roles: {
+    new ssmParameterModule(this, 'ssmParameterModule', {
+      parameters: {
         example: {
-          name: 'example-role',
-          description: 'Description for the role',
-          policyName: 'Policy Custom name',
-          actions: ['*'],    // Allow Actions Services
-          resources: ['*'],    // Allow on Resources or ARN
-          ServicePrincipal: 'ec2.amazonaws.com'   // Assume Policy on Service - Trusted Config
+          name: 'Custom Role Name',
+          value: 'Custom Value',
         },
         example2: {
           name: 'Custom Role Name',
-          description: 'Description for the role',
-          policyName: 'Policy Custom name',
-          actions: ['*'],    // Allow Actions Services
-          resources: ['*'],    // Allow on Resources or ARN
-          ServicePrincipal: 'lambda.amazonaws.com'   // Assume Policy on Service - Trusted Config
+          value: 'Custom Value',
         },
         example3: {
           name: 'Custom Role Name',
-          description: 'Description for the role',
-          policyName: 'Policy Custom name',
-          actions: ['*'],    // Allow Actions Services
-          resources: ['*'],    // Allow on Resources or ARN
-          ServicePrincipal: 's3.amazonaws.com'   // Assume Policy on Service - Trusted Config
+          value: 'Custom Value',
         }
       }
     });
   }
 }
 
-module.exports = { CdkRoleStack };   // Your Custom Stack
+module.exports = { CdkSSMStack };   // Your Custom Stack
 
 ```
 
