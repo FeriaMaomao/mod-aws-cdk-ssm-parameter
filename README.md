@@ -87,7 +87,7 @@ class CdkSSMStack extends cdk.Stack {
     super(scope, id, props);
 
     // Inside your custom stack
-    // Create Role
+    // Create SSM Parameter
     new ssmParameterModule(this, 'ssmParameterModule', {
       parameters: {
         example: {
@@ -126,7 +126,7 @@ class CdkSSMStack extends cdk.Stack {
     super(scope, id, props);
 
     // Inside your custom stack
-    // Create Role
+    // Create SSM Parameter
     new ssmParameterModule(this, 'ssmParameterModule', {
       parameters: {
         example: {
