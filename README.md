@@ -79,7 +79,7 @@ Add in package.json
 
 const cdk = require('aws-cdk-lib');
 const ssm = require('aws-cdk-lib/aws-ssm');
-const { ssmParameterModule } = require('../../mod-aws-cdk-ssm-parameter/ssm-parameter-module');
+const { ssmParameterModule } = require('ssmParameterModule/ssm-parameter-module');
 
 // Your Custom Stack
 class CdkSSMStack extends cdk.Stack {
@@ -118,7 +118,7 @@ Add in package.json
 
 const cdk = require('aws-cdk-lib');
 const ssm = require('aws-cdk-lib/aws-ssm');
-const { ssmParameterModule } = require('../../mod-aws-cdk-ssm-parameter/ssm-parameter-module');
+const { ssmParameterModule } = require('ssmParameterModule/ssm-parameter-module');
 
 // Your Custom Stack
 class CdkSSMStack extends cdk.Stack {
